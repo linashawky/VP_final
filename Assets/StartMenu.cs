@@ -12,4 +12,10 @@ public class StartMenu : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Stack");
     }
+
+    public void QuitButton()
+    {
+        Application.Quit();
+        //EditorApplication.Exit(0);
+    }
 }

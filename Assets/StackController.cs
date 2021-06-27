@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class StackController : MonoBehaviour
 {
     public GameObject newCanvas;
-   // public GameObject button;
+    // public GameObject button;
+    public GameObject notification;
     public Button Consoles;
     public  InputField input;
     public  Button pushButton;
@@ -25,13 +26,25 @@ public class StackController : MonoBehaviour
     {
         
     }
-
+    public void Back()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
+    }
     public void push()
     {
         Debug.Log("input: " + input.text);
         if (string.IsNullOrEmpty(input.text))
         {
-            UnityEditor.EditorUtility.DisplayDialog("WARNING!", "Please input something", "OK");
+            notification.GetComponent<GameMenu>().inputText = "Please input something";
+            notification.GetComponent<GameMenu>().show = true;
+
+            //   StackController.DisplayDialog("WARNING!", "Please input something", "OK");
+            /*#if UNITY_EDITOR
+                        UnityEditor.EditorUtility.DisplayDialog("WARNING!", "c", "OK");
+            #else
+                        StackController.DisplayDialog("WARNING!", "Please input something", "OK");
+
+            #endif*/
         }
         else
         {
@@ -49,7 +62,15 @@ public class StackController : MonoBehaviour
             }
             else
             {
-                UnityEditor.EditorUtility.DisplayDialog("Stack overflow", "Exceeded the Stack memory limit", "OK");
+                notification.GetComponent<GameMenu>().inputText = "Exceeded the stack memory limit";
+                notification.GetComponent<GameMenu>().show = true;
+                /*#if UNITY_EDITOR
+                            UnityEditor.EditorUtility.DisplayDialog("Stack overflow", "Exceeded the Stack memory limit", "OK");
+                #else
+                                StackController.DisplayDialog("Stack overflow", "Exceeded the Stack memory limit", "OK");
+
+                #endif*/
+
             }
         }
     }
@@ -62,7 +83,16 @@ public class StackController : MonoBehaviour
         }
         else
         {
-            UnityEditor.EditorUtility.DisplayDialog("WARNING!", "Nothing in stack to view", "OK");
+            notification.GetComponent<GameMenu>().inputText = "Nothing in stack to view";
+            notification.GetComponent<GameMenu>().show = true;
+
+
+            /*#if UNITY_EDITOR
+                        UnityEditor.EditorUtility.DisplayDialog("WARNING!", "Nothing in stack to view", "OK");
+            #else
+                        StackController.DisplayDialog("WARNING!", "Nothing in stack to view", "OK");
+
+            #endif*/
         }
 
 
@@ -82,7 +112,14 @@ public class StackController : MonoBehaviour
         }
         else
         {
-            UnityEditor.EditorUtility.DisplayDialog("WARNING!", "Nothing in stack to pop", "OK");
+            notification.GetComponent<GameMenu>().inputText = "Nothing in stack to pop";
+            notification.GetComponent<GameMenu>().show = true;
+            /*#if UNITY_EDITOR
+                        UnityEditor.EditorUtility.DisplayDialog("WARNING!", "Nothing in stack to pop", "OK");
+            #else
+                        StackController.DisplayDialog("WARNING!", "Nothing in stack to pop", "OK");
+
+            #endif*/
         }
 
     }
